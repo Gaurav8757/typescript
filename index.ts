@@ -151,6 +151,7 @@ class ExamplePrivate {
         return "Private method";
     }
 
+    // public method can accessible through it => above private fn 
     public accessPrivate() {
         // console.log(this.privateProperty); // Accessible within class
         // console.log(this.privateMethod()); // Accessible within class
@@ -254,4 +255,72 @@ const user2 = new NewUsers("Sonu2");
 console.log(user2.names, NewUsers.incCount); //COUNT 2
 
 
+// Normal Class
+class Store{
+    private items: number[] = [];
+
+    addItem(item: number):void {
+        this.items.push(item);
+    }
+
+    getItem(index:number){
+       return this.items[index];
+    }
+
+    removeItem(index: number){
+        this.items.splice(index, 1);
+    }
+
+    getAllItems(): number[] {
+        return this.items;
+    }
+}
+
+let constructor1 = new Store();
+constructor1.addItem(4);
+constructor1.addItem(8);
+let getData = constructor1.getItem(0);
+let getAll = constructor1.getAllItems();
+let remove = constructor1.removeItem(4);
+
+
+console.log(getData, getAll, remove);
+
+
+// Use Generics => <T> DECLARE MULTIPLE VARIABLES
+class StoreGenerics<T>{
+    private items: T[] = [];
+
+    addItem(item: T):void {
+        this.items.push(item);
+    }
+
+    getItem(index:number){
+       return this.items[index];
+    }
+
+    removeItem(index: number){
+        this.items.splice(index, 1);
+    }
+
+    getAllItems(): T[] {
+        return this.items;
+    }
+}
+
+interface DataStores {
+    name: string;
+    id: number
+}
+
+let cnstrr = new StoreGenerics<DataStores>();
+// Correct way to add items - must match the DataStores interface
+cnstrr.addItem({ name: "Saurav", id: 1 });
+cnstrr.addItem({ name: "John", id: 8 });
+
+let getItem = cnstrr.getItem(0);
+let getAllItem = cnstrr.getAllItems();
+let removeItems = cnstrr.removeItem(1);
+
+console.log(getItem, getAllItem, removeItems);
 
