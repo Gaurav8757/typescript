@@ -404,3 +404,22 @@ handleMsg({ type: "success", message: "Operation succeeded" });
 // Namespaces
 // types.ts => it will contain all of the different type definitons
 
+
+
+// function getCurrentPosition(){
+//     return new Promise((resolve, reject)=>{
+//         navigator?.geolocation?.getCurrentPosition(resolve, reject);
+//     });
+// };
+
+// async function getUserLocation() {
+//     try {
+//         const navigation = await getCurrentPosition();
+//         console.log(navigation);
+        
+//     } catch (error) {
+//         console.log(error);
+         
+//      }
+// }
+// getUserLocation();
