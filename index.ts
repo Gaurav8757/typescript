@@ -222,7 +222,7 @@ abstract class Animal {
 }
 
 class Dog extends Animal {
-    makeSound(duration: number):void { // Must implement abstract method
+    makeSound(duration: number): void { // Must implement abstract method
         console.log(`Woof Woof! for ${duration} seconds`);
     }
 }
@@ -239,10 +239,10 @@ myDog.move(5); // "Moving..."
 // variables and methods that are associated with each instance of the class
 
 class NewUsers {
-    static incCount:number = 0;
+    static incCount: number = 0;
     names: string;
 
-    constructor(names: string){
+    constructor(names: string) {
         NewUsers.incCount++;
         this.names = names;
     }
@@ -256,18 +256,18 @@ console.log(user2.names, NewUsers.incCount); //COUNT 2
 
 
 // Normal Class
-class Store{
+class Store {
     private items: number[] = [];
 
-    addItem(item: number):void {
+    addItem(item: number): void {
         this.items.push(item);
     }
 
-    getItem(index:number){
-       return this.items[index];
+    getItem(index: number) {
+        return this.items[index];
     }
 
-    removeItem(index: number){
+    removeItem(index: number) {
         this.items.splice(index, 1);
     }
 
@@ -288,18 +288,18 @@ console.log(getData, getAll, remove);
 
 
 // Use Generics => <T> DECLARE MULTIPLE VARIABLES
-class StoreGenerics<T>{
+class StoreGenerics<T> {
     private items: T[] = [];
 
-    addItem(item: T):void {
+    addItem(item: T): void {
         this.items.push(item);
     }
 
-    getItem(index:number){
-       return this.items[index];
+    getItem(index: number) {
+        return this.items[index];
     }
 
-    removeItem(index: number){
+    removeItem(index: number) {
         this.items.splice(index, 1);
     }
 
@@ -315,7 +315,7 @@ interface DataStores {
 
 let cnstrr = new StoreGenerics<DataStores>();
 // Correct way to add items - must match the DataStores interface
-cnstrr.addItem({ name: "Saurav", id: 1 });
+cnstrr.addItem({ name: "Saurav", id: 1 }); // add data same as interface AS OBJECT
 cnstrr.addItem({ name: "John", id: 8 });
 
 let getItem = cnstrr.getItem(0);
@@ -323,4 +323,84 @@ let getAllItem = cnstrr.getAllItems();
 let removeItems = cnstrr.removeItem(1);
 
 console.log(getItem, getAllItem, removeItems);
+
+
+
+// type aliases
+type Coordinate = [number, number];
+
+function compareCoords(
+    p1: Coordinate,
+    p2: Coordinate
+): Coordinate {
+    return [p1[0], p2[1]]
+}
+
+
+// Union and Intersection
+
+interface Business {
+    name: string
+}
+
+interface ContactDetails {
+    email: string;
+    phone: string;
+}
+
+type BusinessContact = Business & ContactDetails;
+
+const contact: BusinessContact = {
+    name: "tim",
+    email: "tim@gmail.com",
+    phone: ""
+}
+
+
+
+
+
+// Discriminated Unions
+type Log = Warning | Info | Success
+
+interface Warning {
+    type: "warning"
+    msg: string;
+}
+
+interface Info {
+    type: "info"
+    text: string
+}
+
+interface Success {
+    type: "success"
+    message: string
+}
+
+let log: Log;
+function handleMsg(log: Log) {
+    switch (log.type) {
+        case "warning":
+            console.log(log.msg);
+            break;
+
+            case "info":
+                console.log(log.text);
+
+        break;
+        case "success":
+            console.log(log.message);
+            break;
+            default:
+                console.log("Invalid Type");
+                
+                
+    }
+}
+handleMsg({ type: "success", message: "Operation succeeded" });
+
+// Modules (import Export)
+// Namespaces
+// types.ts => it will contain all of the different type definitons
 

@@ -227,9 +227,34 @@ class StoreGenerics {
 }
 let cnstrr = new StoreGenerics();
 // Correct way to add items - must match the DataStores interface
-cnstrr.addItem({ name: "Saurav", id: 1 });
+cnstrr.addItem({ name: "Saurav", id: 1 }); // add data same as interface AS OBJECT
 cnstrr.addItem({ name: "John", id: 8 });
 let getItem = cnstrr.getItem(0);
 let getAllItem = cnstrr.getAllItems();
 let removeItems = cnstrr.removeItem(1);
 console.log(getItem, getAllItem, removeItems);
+function compareCoords(p1, p2) {
+    return [p1[0], p2[1]];
+}
+const contact = {
+    name: "tim",
+    email: "tim@gmail.com",
+    phone: ""
+};
+let log;
+function handleMsg(log) {
+    switch (log.type) {
+        case "warning":
+            console.log(log.msg);
+            break;
+        case "info":
+            console.log(log.text);
+            break;
+        case "success":
+            console.log(log.message);
+            break;
+        default:
+            console.log("Invalid Type");
+    }
+}
+handleMsg({ type: "success", message: "Operation succeeded" });
